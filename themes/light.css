@@ -1,0 +1,400 @@
+/* ============================================================
+   SPIDERPIGGY LIGHT 1.0.0 - VEILIGE SCROLLFIX
+   Voor Firefox add-on: My Clean Bookmarks
+   Compact • Modern • Licht • Blauw accent
+   ============================================================ */
+
+:root {
+    color-scheme: light;
+
+    --sp-bg:           #f5f7fa;
+    --sp-panel:        #ffffff;
+    --sp-toolbar:      #e9f0f8;
+    --sp-border:       #c9d7e5;
+    --sp-text:         #263445;
+    --sp-muted:        #65788e;
+    --sp-accent:       #205f9c;
+    --sp-accent-soft:  #134b85;
+    --sp-hover:        #eaf2fb;
+    --sp-hover-line:   #397bb5;
+    --sp-width:        356px;
+    --sp-radius:       13px;
+}
+
+/* Basis en popup-afmetingen */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: var(--sp-bg);
+    color: var(--sp-text);
+    font-family: "Segoe UI", system-ui, Arial, sans-serif;
+}
+
+#container {
+    border: 0;
+    background: var(--sp-bg);
+}
+
+.panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: var(--sp-width);
+    min-width: var(--sp-width);
+    max-width: var(--sp-width);
+    height: fit-content;
+    max-height: 520px; /* vaste veilige limiet; geen dvh/important */
+
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background: var(--sp-panel);
+    color: var(--sp-text);
+    border: 1px solid var(--sp-border);
+    border-radius: var(--sp-radius);
+    box-shadow: 0 8px 24px rgba(30, 60, 85, .12);
+
+    font: 13px/1.4 "Segoe UI", system-ui, Arial, sans-serif;
+    user-select: none;
+    -moz-user-select: none;
+
+    scrollbar-width: thin;
+    scrollbar-color: #b7cce0 var(--sp-panel);
+}
+
+/* Smalle titelbalk met instellingen */
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    height: 36px;
+    margin: 0;
+    padding: 0 6px 0 13px;
+
+    background: linear-gradient(110deg, #f4f8fe, var(--sp-toolbar));
+    border-bottom: 1px solid var(--sp-border);
+}
+
+.toolbar::before {
+    content: "★  " var(--sp-bookmarks-label, "BOOKMARKS");
+    display: inline-block;
+    line-height: 35px;
+    color: var(--sp-accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.15px;
+}
+
+.toolbar img {
+    float: right;
+    width: 27px;
+    height: 27px;
+    margin: 4px 3px 0 0;
+    padding: 4px;
+    border-radius: 8px;
+
+    opacity: .88;
+    filter: grayscale(1) brightness(.48);
+    cursor: pointer;
+    transition: background-color .15s ease, opacity .15s ease;
+}
+
+.toolbar img:hover {
+    background: rgba(48, 112, 173, .12);
+    opacity: 1;
+}
+
+/* Bladwijzers als nette, compacte rijen */
+table {
+    width: 100%;
+    table-layout: fixed;
+    margin: 0;
+    padding: 5px 4px 16px;
+    border-spacing: 0;
+    border-collapse: separate;
+}
+
+tr {
+    height: 32px;
+    cursor: pointer;
+    transition: background-color .12s ease;
+}
+
+tr:hover {
+    background: var(--sp-hover);
+}
+
+tr:hover td:first-child {
+    box-shadow: inset 3px 0 0 var(--sp-hover-line);
+}
+
+td {
+    height: 32px;
+    margin: 0;
+    padding: 5px 3px;
+    color: var(--sp-text);
+    vertical-align: middle;
+}
+
+td * {
+    vertical-align: middle;
+}
+
+/* Faviconen */
+td.icon,
+td.subfolder-icon {
+    width: 33px;
+    padding-left: 10px;
+    padding-right: 2px;
+}
+
+td.icon img,
+td.subfolder-icon img {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    margin: -1px 0 0;
+    border: 0;
+    object-fit: contain;
+}
+
+/* In submappen blijft ruimte vrij voor de terugbalk. */
+td.subfolder-icon {
+    width: 59px;
+    padding-left: 10px;
+}
+
+td.subfolder-icon img {
+    margin-left: 26px;
+}
+
+/* Titels en mappen */
+td.title,
+td.folder,
+td.subfolder-title,
+td.subfolder {
+    width: auto;
+    min-width: 0;
+    overflow: hidden;
+}
+
+td.title span,
+td.folder span,
+td.subfolder-title span,
+td.subfolder span {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    color: var(--sp-text);
+    font: 400 13px/20px "Segoe UI", system-ui, Arial, sans-serif;
+    cursor: pointer;
+}
+
+td.folder span,
+td.subfolder span {
+    color: var(--sp-accent);
+    font-weight: 600;
+}
+
+tr:hover td.title span,
+tr:hover td.subfolder-title span {
+    color: #152638;
+}
+
+tr:hover td.folder span,
+tr:hover td.subfolder span {
+    color: var(--sp-accent-soft);
+}
+
+/* Pijltjes rechts bij mappen */
+td.arrow {
+    width: 23px;
+    padding: 4px 7px 4px 1px;
+    text-align: center;
+}
+
+td.arrow img {
+    max-width: 11px;
+    max-height: 13px;
+    opacity: .8;
+    filter: brightness(0) opacity(.67);
+    transition: opacity .12s ease;
+}
+
+tr:hover td.arrow img {
+    opacity: 1;
+    filter: brightness(0) saturate(100%) invert(31%) sepia(85%)
+            saturate(850%) hue-rotate(171deg);
+}
+
+/* Terugbalk in een submenu */
+div.return_box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    width: 28px;
+    /* De add-on vult de juiste hoogte zelf in. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(180deg, #e7f0fa, #d7e7f7);
+    border: 0;
+    border-right: 1px solid #b8cde2;
+    border-radius: 11px 0 0 11px;
+    box-shadow: 2px 0 10px rgba(20, 60, 100, .08);
+    cursor: pointer;
+
+    transition: background .15s ease;
+}
+
+div.return_box:hover {
+    background: linear-gradient(180deg, #d5e8fa, #c6def5);
+}
+
+/* De oude, piepkleine bitmap-pijl verbergen. */
+div.return_box img {
+    display: none;
+}
+
+/* Duidelijke, scherpe CSS-terugpijl */
+div.return_box::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
+    border-left: 3px solid #23669d;
+    border-bottom: 3px solid #23669d;
+    border-radius: 1px;
+    transform: rotate(45deg);
+    filter: drop-shadow(0 1px 1px rgba(20,60,100,.1));
+}
+
+div.return_box:hover::after {
+    border-color: #164c7b;
+}
+
+/* Scheidingslijnen tussen bladwijzergroepen */
+tr:has(> td > div.splitter) {
+    height: 9px;
+    cursor: default;
+}
+
+tr:has(> td > div.splitter):hover {
+    background: transparent;
+}
+
+tr:has(> td > div.splitter):hover td:first-child {
+    box-shadow: none;
+}
+
+td[colspan] {
+    height: 9px;
+    padding: 3px 12px;
+}
+
+div.splitter {
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    background: #dce5ee;
+}
+
+/* Lege map */
+span.empty {
+    color: var(--sp-muted) !important;
+    font-style: italic !important;
+}
+
+/* Minder animatie als dit in Firefox gevraagd wordt */
+@media (prefers-reduced-motion: reduce) {
+    tr,
+    .toolbar img,
+    td.arrow img,
+    div.return_box {
+        transition: none;
+    }
+}
+
+
+/* Local fallback for bookmarks whose real favicon is unavailable. */
+td.icon .sp-favicon-wrap,
+td.subfolder-icon .sp-favicon-wrap {
+    display: inline-block;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    vertical-align: middle;
+    overflow: hidden;
+    border-radius: 4px;
+}
+td.icon .sp-favicon-letter,
+td.subfolder-icon .sp-favicon-letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 17px;
+    background: var(--sp-hover);
+    border: 1px solid var(--sp-border);
+    color: var(--sp-accent);
+    font: 700 10px/17px "Segoe UI", sans-serif;
+    text-align: center;
+}
+td.icon .sp-favicon-wrap img,
+td.subfolder-icon .sp-favicon-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    background: var(--sp-panel);
+}
+
+/* ===========================================================
+   RC4: a structural subfolder gutter, not an icon offset.
+   The fixed return control occupies the first 28px of the popup;
+   the entire table begins AFTER it, so icons never render beneath it.
+   =========================================================== */
+.panel.sp-subfolder table {
+    width: calc(100% - 28px);
+    max-width: calc(100% - 28px);
+    margin-left: 28px;
+    table-layout: fixed;
+}
+.panel.sp-subfolder td.subfolder-icon {
+    width: 33px;
+    padding-left: 10px;
+    padding-right: 2px;
+}
+.panel.sp-subfolder td.subfolder-icon > img,
+.panel.sp-subfolder td.subfolder-icon .sp-favicon-wrap {
+    margin-left: 0;
+}
+.panel.sp-subfolder .return_box {
+    left: 0;
+    width: 28px;
+    z-index: 10;
+}

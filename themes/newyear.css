@@ -1,0 +1,505 @@
+/* ============================================================
+   SPIDERPIGGY NIEUWJAAR - MY CLEAN BOOKMARKS
+   Middernachtblauw • Champagnegoud • Lichtjes
+   Gebaseerd op Spiderpiggy Dark 2.0.2 met veilige scrollfix.
+   ============================================================ */
+
+:root {
+    color-scheme: dark;
+
+    --sp-bg:           #111b1d;
+    --sp-panel:        #192729;
+    --sp-toolbar:      #223b39;
+    --sp-border:       #416861;
+    --sp-text:         #eaf5f2;
+    --sp-muted:        #8ca9a3;
+    --sp-accent:       #83e6c9;
+    --sp-accent-soft:  #b1ffe7;
+    --sp-hover:        #2a4b46;
+    --sp-hover-line:   #80e3c5;
+    --sp-width:        356px;
+    --sp-radius:       13px;
+}
+
+/* Basis en popup-afmetingen */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: var(--sp-bg);
+    color: var(--sp-text);
+    font-family: "Segoe UI", system-ui, Arial, sans-serif;
+}
+
+#container {
+    border: 0;
+    background: var(--sp-bg);
+}
+
+.panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: var(--sp-width);
+    min-width: var(--sp-width);
+    max-width: var(--sp-width);
+    height: fit-content;
+    max-height: 520px; /* vaste veilige limiet; geen dvh/important */
+
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background: var(--sp-panel);
+    color: var(--sp-text);
+    border: 1px solid var(--sp-border);
+    border-radius: var(--sp-radius);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .28);
+
+    font: 13px/1.4 "Segoe UI", system-ui, Arial, sans-serif;
+    user-select: none;
+    -moz-user-select: none;
+
+    scrollbar-width: thin;
+    scrollbar-color: #507e73 var(--sp-panel);
+}
+
+/* Smalle titelbalk met instellingen */
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    height: 36px;
+    margin: 0;
+    padding: 0 6px 0 13px;
+
+    background: linear-gradient(110deg, #284941, var(--sp-toolbar));
+    border-bottom: 1px solid var(--sp-border);
+}
+
+.toolbar::before {
+    content: "🎆  " var(--sp-bookmarks-label, "BOOKMARKS");
+    display: inline-block;
+    line-height: 35px;
+    color: var(--sp-accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.15px;
+}
+
+.toolbar img {
+    float: right;
+    width: 27px;
+    height: 27px;
+    margin: 4px 3px 0 0;
+    padding: 4px;
+    border-radius: 8px;
+
+    opacity: .88;
+    filter: grayscale(1) brightness(0) invert(.92);
+    cursor: pointer;
+    transition: background-color .15s ease, opacity .15s ease;
+}
+
+.toolbar img:hover {
+    background: rgba(124, 230, 199, .16);
+    opacity: 1;
+}
+
+/* Bladwijzers als nette, compacte rijen */
+table {
+    width: 100%;
+    table-layout: fixed;
+    margin: 0;
+    padding: 5px 4px 16px;
+    border-spacing: 0;
+    border-collapse: separate;
+}
+
+tr {
+    height: 32px;
+    cursor: pointer;
+    transition: background-color .12s ease;
+}
+
+tr:hover {
+    background: var(--sp-hover);
+}
+
+tr:hover td:first-child {
+    box-shadow: inset 3px 0 0 var(--sp-hover-line);
+}
+
+td {
+    height: 32px;
+    margin: 0;
+    padding: 5px 3px;
+    color: var(--sp-text);
+    vertical-align: middle;
+}
+
+td * {
+    vertical-align: middle;
+}
+
+/* Faviconen */
+td.icon,
+td.subfolder-icon {
+    width: 33px;
+    padding-left: 10px;
+    padding-right: 2px;
+}
+
+td.icon img,
+td.subfolder-icon img {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    margin: -1px 0 0;
+    border: 0;
+    object-fit: contain;
+}
+
+/* In submappen blijft ruimte vrij voor de terugbalk. */
+td.subfolder-icon {
+    width: 59px;
+    padding-left: 10px;
+}
+
+td.subfolder-icon img {
+    margin-left: 26px;
+}
+
+/* Titels en mappen */
+td.title,
+td.folder,
+td.subfolder-title,
+td.subfolder {
+    width: auto;
+    min-width: 0;
+    overflow: hidden;
+}
+
+td.title span,
+td.folder span,
+td.subfolder-title span,
+td.subfolder span {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    color: var(--sp-text);
+    font: 400 13px/20px "Segoe UI", system-ui, Arial, sans-serif;
+    cursor: pointer;
+}
+
+td.folder span,
+td.subfolder span {
+    color: var(--sp-accent);
+    font-weight: 600;
+}
+
+tr:hover td.title span,
+tr:hover td.subfolder-title span {
+    color: #ffffff;
+}
+
+tr:hover td.folder span,
+tr:hover td.subfolder span {
+    color: var(--sp-accent-soft);
+}
+
+/* Pijltjes rechts bij mappen */
+td.arrow {
+    width: 23px;
+    padding: 4px 7px 4px 1px;
+    text-align: center;
+}
+
+td.arrow img {
+    max-width: 11px;
+    max-height: 13px;
+    opacity: .8;
+    filter: brightness(0) invert(.87);
+    transition: opacity .12s ease;
+}
+
+tr:hover td.arrow img {
+    opacity: 1;
+    filter: brightness(0) saturate(100%) invert(90%)
+            sepia(18%) saturate(650%) hue-rotate(90deg);
+}
+
+/* Terugbalk in een submenu */
+div.return_box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    width: 28px;
+    /* De add-on vult de juiste hoogte zelf in. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(180deg, #2e5750, #23413d);
+    border: 0;
+    border-right: 1px solid #5d998b;
+    border-radius: 11px 0 0 11px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, .2);
+    cursor: pointer;
+
+    transition: background .15s ease;
+}
+
+div.return_box:hover {
+    background: linear-gradient(180deg, #427d70, #315f57);
+}
+
+/* De oude, piepkleine bitmap-pijl verbergen. */
+div.return_box img {
+    display: none;
+}
+
+/* Duidelijke, scherpe CSS-terugpijl */
+div.return_box::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
+    border-left: 3px solid #e8fff7;
+    border-bottom: 3px solid #e8fff7;
+    border-radius: 1px;
+    transform: rotate(45deg);
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.25));
+}
+
+div.return_box:hover::after {
+    border-color: #ffffff;
+}
+
+/* Scheidingslijnen tussen bladwijzergroepen */
+tr:has(> td > div.splitter) {
+    height: 9px;
+    cursor: default;
+}
+
+tr:has(> td > div.splitter):hover {
+    background: transparent;
+}
+
+tr:has(> td > div.splitter):hover td:first-child {
+    box-shadow: none;
+}
+
+td[colspan] {
+    height: 9px;
+    padding: 3px 12px;
+}
+
+div.splitter {
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    background: #35514c;
+}
+
+/* Lege map */
+span.empty {
+    color: var(--sp-muted) !important;
+    font-style: italic !important;
+}
+
+/* Minder animatie als dit in Firefox gevraagd wordt */
+@media (prefers-reduced-motion: reduce) {
+    tr,
+    .toolbar img,
+    td.arrow img,
+    div.return_box {
+        transition: none;
+    }
+}
+
+
+/* ============================================================
+   FEESTTHEMA: NIEUWJAAR
+   Alleen visuele overschrijvingen. Geen wijzigingen aan afmetingen,
+   scrollbar, submenu-positie of klikgedrag van de add-on.
+   ============================================================ */
+
+:root {
+    --sp-bg: #0b1125;
+    --sp-panel: #141d38;
+    --sp-toolbar: #273153;
+    --sp-border: #696b9a;
+    --sp-text: #f4f3ff;
+    --sp-muted: #abb4cf;
+    --sp-accent: #ffe3a0;
+    --sp-accent-soft: #fff3c7;
+    --sp-hover: #283660;
+    --sp-hover-line: #f9d780;
+}
+
+html,
+body,
+#container {
+    background: var(--sp-bg);
+}
+
+.panel {
+    background: radial-gradient(circle at 95% 2%, rgba(162, 146, 255, .13), transparent 34%), radial-gradient(circle at 8% 90%, rgba(255, 214, 124, .055), transparent 50%), linear-gradient(150deg, #1a2443, #131b33);
+    border-color: var(--sp-border);
+    box-shadow: 0 9px 26px rgba(0, 0, 0, .36), 0 0 18px rgba(159, 142, 247, .17);
+    scrollbar-color: #727da8 var(--sp-panel);
+}
+
+.toolbar {
+    background: radial-gradient(circle at 15% 100%, rgba(246, 197, 100, .2), transparent 34%), radial-gradient(circle at 78% 0%, rgba(155, 136, 243, .35), transparent 46%), linear-gradient(110deg, #2b335e, #1d2749);
+    border-bottom-color: var(--sp-border);
+    box-shadow: inset 0 -1px 0 rgba(245, 211, 136, .19);
+}
+
+.toolbar::before {
+    content: "🎆  MIJN BLADWIJZERS";
+    color: var(--sp-accent);
+    text-shadow: 0 0 10px rgba(242, 214, 149, .18);
+}
+
+/* Mini-versiering, weg van het instellingen-icoon. */
+.toolbar::after {
+    content: "✨";
+    position: absolute;
+    top: 0;
+    right: 45px;
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    pointer-events: none;
+    transform-origin: center;
+    animation: sp-firework-glow 2.6s ease-in-out infinite;
+}
+
+.toolbar img:hover {
+    background: rgba(245, 211, 136, .19);
+}
+
+tr:hover {
+    background: var(--sp-hover);
+}
+
+tr:hover td:first-child {
+    box-shadow: inset 3px 0 0 var(--sp-hover-line);
+}
+
+tr:hover td.icon img,
+tr:hover td.subfolder-icon img {
+    filter: drop-shadow(0 0 4px rgba(242, 214, 149, .18));
+}
+
+div.return_box {
+    background: linear-gradient(180deg, #535d98, #303b6a);
+    border-right-color: var(--sp-border);
+}
+
+div.return_box:hover {
+    background: linear-gradient(180deg, #6973b3, #414d82);
+}
+
+div.return_box::after {
+    border-left-color: #fff4d1;
+    border-bottom-color: #fff4d1;
+}
+
+div.splitter {
+    background: #414b74;
+}
+
+@keyframes sp-firework-glow {
+    0%, 100% { transform: scale(.85); opacity: .7; } 50% { transform: scale(1.14); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .toolbar::after {
+        animation: none;
+    }
+}
+
+
+/* Local fallback for bookmarks whose real favicon is unavailable. */
+td.icon .sp-favicon-wrap,
+td.subfolder-icon .sp-favicon-wrap {
+    display: inline-block;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    vertical-align: middle;
+    overflow: hidden;
+    border-radius: 4px;
+}
+td.icon .sp-favicon-letter,
+td.subfolder-icon .sp-favicon-letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 17px;
+    background: var(--sp-hover);
+    border: 1px solid var(--sp-border);
+    color: var(--sp-accent);
+    font: 700 10px/17px "Segoe UI", sans-serif;
+    text-align: center;
+}
+td.icon .sp-favicon-wrap img,
+td.subfolder-icon .sp-favicon-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    background: var(--sp-panel);
+}
+
+/* ===========================================================
+   RC4: a structural subfolder gutter, not an icon offset.
+   The fixed return control occupies the first 28px of the popup;
+   the entire table begins AFTER it, so icons never render beneath it.
+   =========================================================== */
+.panel.sp-subfolder table {
+    width: calc(100% - 28px);
+    max-width: calc(100% - 28px);
+    margin-left: 28px;
+    table-layout: fixed;
+}
+.panel.sp-subfolder td.subfolder-icon {
+    width: 33px;
+    padding-left: 10px;
+    padding-right: 2px;
+}
+.panel.sp-subfolder td.subfolder-icon > img,
+.panel.sp-subfolder td.subfolder-icon .sp-favicon-wrap {
+    margin-left: 0;
+}
+.panel.sp-subfolder .return_box {
+    left: 0;
+    width: 28px;
+    z-index: 10;
+}

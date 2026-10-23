@@ -1,62 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script type="text/javascript" src="../jquery-3.7.1.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script src="../jquery-3.7.1.min.js"></script>
 </head>
 <body>
-	<h2>&lt;<span id="settings"></span>&gt;</h2>
-	<article>
-		<div class="options">
-			<table>
-				<tr>
-					<td>
-						<span id="popup_folder"></span>
-						<img id="folder_loading" src="../popup/imgs/spin.svg" alt="">
-						<br><br>
-						<select id="topId">
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<h3 id="style-textarea"></h3><br />
-						<textarea rows="10" cols="80" id="css"></textarea><br />
-        				<input type="button" value="" id="revertCss" />
-        				<input type="button" value="" id="saveCss" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" id="autoOpen" value="" checked>
-						<label for="autoOpen"><span id="auto_open"></span></label>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<label for="autoOpenPause"><span id="auto_open_pause"></span></label>
-							<input type="number" id="autoOpenPause" value="1000" size=4 min=0 max=9999 step=1>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="checkbox" id="newTab" value="" checked>
-						<label for="newTab"><span id="open_in_new_tab"></span></label>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<hr>
-		<h2>&lt;<span id="notes"></span>&gt;</h2>
-		<div class="memo">
-			<span id="open_wo_closing"></span><br />
-			<span id="update_favicon"></span>
-		</div>
-	</article>
-	<script type="text/javascript" src="popup_css.js"></script>
-	<script type="text/javascript" src="script.js"></script>
+    <main class="settings-page">
+        <header class="page-header">
+            <h1 id="settings"></h1>
+        </header>
+
+        <section class="settings-card" aria-label="Bookmark preferences">
+            <div class="setting-field">
+                <label class="field-label" for="topId" id="popup_folder"></label>
+                <div class="folder-control">
+                    <img id="folder_loading" src="../popup/imgs/spin.svg" alt="">
+                    <select id="topId" aria-labelledby="popup_folder"></select>
+                </div>
+            </div>
+
+            <div class="setting-field">
+                <label class="field-label" for="theme" id="theme-label"></label>
+                <select id="theme"></select>
+                <p class="field-hint" id="theme-hint"></p>
+            </div>
+
+            <div class="setting-field holiday-setting">
+                <div class="check-field">
+                    <input type="checkbox" id="autoHoliday" checked>
+                    <label for="autoHoliday" id="auto_holiday"></label>
+                </div>
+                <p class="field-hint holiday-dates" id="holiday_dates"></p>
+                <p class="field-hint holiday-status" id="holiday_status" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="setting-field custom-css" id="custom-css-row" hidden>
+                <label class="field-label" for="css" id="style-textarea"></label>
+                <textarea rows="10" id="css" spellcheck="false"></textarea>
+                <div class="button-row">
+                    <input type="button" value="" id="revertCss">
+                    <input type="button" value="" id="saveCss">
+                </div>
+            </div>
+
+            <div class="setting-field favicon-setting">
+                <div class="check-field">
+                    <input type="checkbox" id="loadFavicons">
+                    <label for="loadFavicons" id="load_favicons"></label>
+                </div>
+                <p class="field-hint" id="favicon_hint"></p>
+                <div class="favicon-enhanced-controls" id="favicon-enhanced-controls" hidden>
+                    <button type="button" id="faviconEnhancedBtn"></button>
+                    <p class="field-hint" id="faviconEnhancedHint"></p>
+                    <p class="field-hint" id="faviconEnhancedStatus" role="status" aria-live="polite"></p>
+                </div>
+                <p class="field-hint" id="favicon_status" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="setting-field check-field">
+                <input type="checkbox" id="autoOpen" checked>
+                <label for="autoOpen" id="auto_open"></label>
+            </div>
+
+            <div class="setting-field delay-field">
+                <label for="autoOpenPause" id="auto_open_pause"></label>
+                <input type="number" id="autoOpenPause" value="850" min="0" max="9999" step="1" inputmode="numeric">
+            </div>
+
+            <div class="setting-field check-field last-field">
+                <input type="checkbox" id="newTab" checked>
+                <label for="newTab" id="open_in_new_tab"></label>
+            </div>
+        </section>
+
+        <section class="notes-card">
+            <h2 id="notes"></h2>
+            <p id="open_wo_closing"></p>
+            <p id="update_favicon"></p>
+            <p id="pin_to_toolbar"></p>
+        </section>
+    </main>
+    <script src="popup_css.js"></script>
+    <script src="../holiday-theme.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

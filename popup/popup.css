@@ -111,3 +111,38 @@ div.return_box img {
 span.empty {
     color: #aaa;
 }
+
+/* Local fallback for bookmarks whose real favicon is unavailable. */
+td.icon .sp-favicon-wrap,
+td.subfolder-icon .sp-favicon-wrap {
+    display: inline-block;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    vertical-align: middle;
+    overflow: hidden;
+    border-radius: 4px;
+}
+td.icon .sp-favicon-letter,
+td.subfolder-icon .sp-favicon-letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 17px;
+    background: var(--sp-hover);
+    border: 1px solid var(--sp-border);
+    color: var(--sp-accent);
+    font: 700 10px/17px "Segoe UI", sans-serif;
+    text-align: center;
+}
+td.icon .sp-favicon-wrap img,
+td.subfolder-icon .sp-favicon-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    background: var(--sp-panel);
+}

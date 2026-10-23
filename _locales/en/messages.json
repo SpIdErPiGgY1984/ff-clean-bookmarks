@@ -3,74 +3,130 @@
         "message": "Automatically open the folder when you hover the mouse pointer.",
         "description": "Setting HTML text."
     },
-
     "auto_open_pause": {
         "message": "Pause before automatically opening the folder (in milliseconds: 1 s = 1000 ms): ",
         "description": "Setting HTML text."
     },
-
     "bookmarks": {
         "message": "Bookmarks",
         "description": "Description for the button."
     },
-
     "description": {
         "message": "Add a button to popup your bookmarks.",
         "description": "Description of the extension."
     },
-
     "empty": {
         "message": "...",
         "description": "Label for an empty folder."
     },
-
     "name": {
-        "message": "My Clean Bookmarks",
-        "description": "Name of the extension."
+        "message": "Spiderpiggy Clean Bookmarks"
     },
-
     "notes": {
         "message": "Notes",
         "description": "Setting HTML text."
     },
-
     "open_in_new_tab": {
         "message": "Open bookmarks in new tab",
         "description": "Setting HTML text."
     },
-
     "open_wo_closing": {
         "message": "Open tab without closing popup: Middle-click bookmark.",
         "description": "Setting HTML text."
     },
-
     "popup_folder": {
         "message": "Popup folder",
         "description": "Setting HTML text."
     },
-
     "revert_css": {
         "message": "Return to default style",
         "description": "Setting HTML text."
     },
-
     "save_css": {
         "message": "Save style",
         "description": "Setting HTML text."
     },
-
     "settings": {
         "message": "Settings",
         "description": "Setting HTML text."
     },
-
     "style_textarea": {
         "message": "Set custom CSS style for the popup menu",
         "description": "Setting HTML text."
     },
-
     "update_favicon": {
-        "message": "Update favicon: Right-click bookmark.",
-        "description": "Setting HTML text."
+        "message": "Refresh a favicon: right-click the bookmark (only when favicon loading is enabled)."
+    },
+    "theme_label": {
+        "message": "Bookmark appearance"
+    },
+    "theme_hint": {
+        "message": "Automatic follows the Firefox/system light or dark preference. Custom CSS is preserved."
+    },
+    "theme_auto": {
+        "message": "Automatic (light / dark)"
+    },
+    "theme_light": {
+        "message": "Standard Light"
+    },
+    "theme_dark": {
+        "message": "Spiderpiggy Dark"
+    },
+    "theme_halloween": {
+        "message": "Halloween"
+    },
+    "theme_christmas": {
+        "message": "Christmas"
+    },
+    "theme_newyear": {
+        "message": "New Year"
+    },
+    "theme_custom": {
+        "message": "Custom CSS"
+    },
+    "auto_holiday": {
+        "message": "Enable seasonal themes automatically"
+    },
+    "holiday_dates": {
+        "message": "Halloween: October 25–November 1 · Christmas: December 20–26 · New Year: December 27–January 3. Your regular theme applies outside these dates."
+    },
+    "holiday_active": {
+        "message": "Currently active: {theme}. Your regular theme returns automatically afterwards."
+    },
+    "holiday_inactive": {
+        "message": "Currently active: your regular theme."
+    },
+    "pin_to_toolbar": {
+        "message": "Show the toolbar button: open the Firefox extensions (puzzle) menu → three dots beside the add-on → Pin to Toolbar."
+    },
+    "load_favicons": {
+        "message": "Load bookmark favicons (optional)"
+    },
+    "favicon_hint": {
+        "message": "If enabled, bookmark favicons may be loaded directly from their HTTPS websites. You can grant additional permissions to find more real icons. These websites and their icon hosts may see the requests. No external favicon proxy or analytics."
+    },
+    "favicon_enabled": {
+        "message": "Favicons enabled. Reopen the bookmarks popup to fetch icons."
+    },
+    "favicon_denied": {
+        "message": "Permission not granted. Favicons remain disabled."
+    },
+    "favicon_disabled": {
+        "message": "Favicons disabled. No remote icons are requested."
+    },
+    "favicon_enhanced_button": {
+        "message": "Find more real favicons: grant access"
+    },
+    "favicon_enhanced_hint": {
+        "message": "Optional: Firefox requests access to websites and open tabs, used only to detect favicon URLs. Page HTML is fetched without cookies; bookmark URLs are never sent to a central collection server."
+    },
+    "favicon_enhanced_active": {
+        "message": "Enhanced favicon detection is active. Reopen your bookmarks."
+    },
+    "favicon_enhanced_inactive": {
+        "message": "Enhanced detection is not enabled yet."
+    },
+    "favicon_enhanced_denied": {
+        "message": "Permission was declined. Basic favicon detection remains available."
     }
 }

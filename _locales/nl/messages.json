@@ -1,0 +1,119 @@
+{
+    "name": {
+        "message": "Spiderpiggy Clean Bookmarks"
+    },
+    "auto_open": {
+        "message": "Map automatisch openen wanneer je er met de muis overheen beweegt."
+    },
+    "auto_open_pause": {
+        "message": "Wachttijd voordat een map automatisch opent (milliseconden; 1000 ms = 1 seconde):"
+    },
+    "bookmarks": {
+        "message": "Bladwijzers"
+    },
+    "description": {
+        "message": "Open je bladwijzers snel en overzichtelijk via de werkbalk."
+    },
+    "empty": {
+        "message": "..."
+    },
+    "notes": {
+        "message": "Opmerkingen"
+    },
+    "open_in_new_tab": {
+        "message": "Bladwijzers openen in een nieuw tabblad"
+    },
+    "open_wo_closing": {
+        "message": "Open een bladwijzer zonder de pop-up te sluiten: klik met de middelste muisknop."
+    },
+    "popup_folder": {
+        "message": "Hoofdmap voor de bladwijzers"
+    },
+    "revert_css": {
+        "message": "Standaard CSS herstellen"
+    },
+    "save_css": {
+        "message": "Aangepaste CSS opslaan"
+    },
+    "settings": {
+        "message": "Instellingen"
+    },
+    "style_textarea": {
+        "message": "Aangepaste CSS voor de bladwijzerpop-up"
+    },
+    "update_favicon": {
+        "message": "Favicon vernieuwen: rechtsklik op een bladwijzer (alleen indien favicon-optie aan staat)."
+    },
+    "theme_label": {
+        "message": "Uiterlijk van de bladwijzers"
+    },
+    "theme_hint": {
+        "message": "Automatisch volgt de lichte of donkere voorkeur van Firefox/je systeem. Bestaande eigen CSS blijft bewaard."
+    },
+    "theme_auto": {
+        "message": "Automatisch (licht / donker)"
+    },
+    "theme_light": {
+        "message": "Standaard Light"
+    },
+    "theme_dark": {
+        "message": "Spiderpiggy Dark"
+    },
+    "theme_halloween": {
+        "message": "Halloween"
+    },
+    "theme_christmas": {
+        "message": "Kerstmis"
+    },
+    "theme_newyear": {
+        "message": "Nieuwjaar"
+    },
+    "theme_custom": {
+        "message": "Eigen CSS"
+    },
+    "auto_holiday": {
+        "message": "Feestdagenthema’s automatisch inschakelen"
+    },
+    "holiday_dates": {
+        "message": "Halloween: 25 oktober t/m 1 november · Kerstmis: 20 t/m 26 december · Nieuwjaar: 27 december t/m 3 januari. Op andere dagen geldt je normale themakeuze."
+    },
+    "holiday_active": {
+        "message": "Nu actief: {theme}. Je normale themakeuze wordt daarna automatisch hersteld."
+    },
+    "holiday_inactive": {
+        "message": "Nu actief: je normale themakeuze."
+    },
+    "pin_to_toolbar": {
+        "message": "Werkbalkpictogram tonen: klik in Firefox op het puzzelstukje → drie puntjes naast de extensie → Vastmaken aan werkbalk."
+    },
+    "load_favicons": {
+        "message": "Favicons van bladwijzers ophalen (optioneel)"
+    },
+    "favicon_hint": {
+        "message": "Indien ingeschakeld kan deze extensie pictogrammen laden vanaf HTTPS-websites die in je bladwijzers staan. Je kunt extra rechten geven om meer echte favicons te vinden. Bezochte websites en hun icoonservers kunnen deze verzoeken zien. Geen externe favicon-proxy of analytics."
+    },
+    "favicon_enabled": {
+        "message": "Favicons ingeschakeld. Open de bladwijzers opnieuw om iconen te laden."
+    },
+    "favicon_denied": {
+        "message": "Geen toestemming gegeven. Favicons blijven uitgeschakeld."
+    },
+    "favicon_disabled": {
+        "message": "Favicons uitgeschakeld. Er worden geen externe iconen opgehaald."
+    },
+    "favicon_enhanced_button": {
+        "message": "Meer echte favicons: toestemming geven"
+    },
+    "favicon_enhanced_hint": {
+        "message": "Optioneel: Firefox vraagt toegang om websites en open tabbladen te lezen. We gebruiken dit uitsluitend om favicon-links te vinden. HTML wordt zonder cookies opgehaald; bladwijzer-URL’s worden niet naar een verzamelserver gestuurd."
+    },
+    "favicon_enhanced_active": {
+        "message": "Uitgebreide favicon-herkenning is actief. Open de bladwijzers opnieuw."
+    },
+    "favicon_enhanced_inactive": {
+        "message": "Uitgebreide herkenning is nog niet ingeschakeld."
+    },
+    "favicon_enhanced_denied": {
+        "message": "Toestemming geweigerd. De eenvoudige favicon-zoekmethode blijft werken."
+    }
+}

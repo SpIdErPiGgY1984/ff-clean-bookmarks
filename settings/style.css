@@ -1,40 +1,155 @@
-h2 {
-	font-size: 16px; font-weight: normal;
-	margin: 0 0 4px 2px;
+/* Spiderpiggy Clean Bookmarks 0.6.1 - options: readable light and dark palettes */
+:root {
+    color-scheme: light;
+    --settings-bg: #f5f7fa;
+    --settings-card: #ffffff;
+    --settings-text: #243345;
+    --settings-muted: #586b7e;
+    --settings-border: #d7e0e8;
+    --settings-input: #ffffff;
+    --settings-accent: #177c83;
+    --settings-accent-hover: #12676d;
+    --settings-focus: #0d7680;
+    --settings-shadow: 0 2px 10px rgba(26, 43, 63, .045);
 }
-h3 {
-	font-size: 14px; font-weight: normal;
-	margin: 0 0 4px 2px;
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+        --settings-bg: #171c23;
+        --settings-card: #242c35;
+        --settings-text: #eef3f8;
+        --settings-muted: #b4c3d0;
+        --settings-border: #455362;
+        --settings-input: #19212a;
+        --settings-accent: #8de1cf;
+        --settings-accent-hover: #b2f5e4;
+        --settings-focus: #9eead8;
+        --settings-shadow: 0 3px 14px rgba(0, 0, 0, .13);
+    }
 }
-article { 
-	font-size: 14px; color: #444;
-	padding: 0px; margin: 0px;
-	user-select: none; -moz-user-select: none; -webkit-user-select: none;
+
+*, *::before, *::after { box-sizing: border-box; }
+html {
+    min-height: 100%;
+    background: var(--settings-bg);
 }
-table {
-	border-collapse: collapse;
+body {
+    min-width: 0;
+    min-height: 100vh;
+    margin: 0;
+    padding: 18px 18px 22px;
+    background: var(--settings-bg);
+    color: var(--settings-text);
+    font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 }
-hr {
-	background-color: #eee;
+.settings-page { width: 100%; max-width: 750px; margin: 0 auto; }
+.page-header { margin: 0 0 13px; }
+h1 {
+    margin: 0;
+    color: var(--settings-text);
+    font-size: 21px;
+    line-height: 1.35;
+    font-weight: 700;
+    letter-spacing: -.02em;
 }
-.options td {
-	border: none;
-	padding: 6px 8px;
+.settings-card, .notes-card {
+    border: 1px solid var(--settings-border);
+    border-radius: 12px;
+    background: var(--settings-card);
+    color: var(--settings-text);
+    box-shadow: var(--settings-shadow);
 }
-.options {
-	padding: 4px 8px 20px 8px;
+.settings-card { padding: 3px 18px; }
+.setting-field { min-width: 0; padding: 13px 0; border-bottom: 1px solid var(--settings-border); }
+.setting-field:last-child, .last-field { border-bottom: 0; }
+.field-label { display: block; margin: 0 0 7px; font-weight: 650; color: var(--settings-text); }
+.field-hint { margin: 8px 0 0; color: var(--settings-muted); font-size: 12.5px; }
+.folder-control { display: flex; align-items: center; min-height: 35px; }
+#folder_loading { width: 18px; height: 18px; margin-right: 6px; }
+#topId { display: none; }
+select, textarea, input[type="number"] {
+    width: 100%;
+    max-width: 480px;
+    border: 1px solid var(--settings-border);
+    border-radius: 8px;
+    background: var(--settings-input);
+    color: var(--settings-text);
+    font: inherit;
+    outline-offset: 2px;
 }
-.memo {
-	padding: 4px 16px;
-	line-height: 200%;
+select { min-height: 37px; padding: 6px 33px 6px 10px; }
+#topId { max-width: 360px; }
+#theme { max-width: 360px; }
+.check-field { display: flex; align-items: flex-start; gap: 10px; }
+.check-field label { margin: 0; flex: 1; cursor: pointer; }
+.check-field input[type="checkbox"] {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    margin: 2px 0 0;
+    accent-color: var(--settings-accent);
+    cursor: pointer;
 }
-#topId {
-	max-width: 400px; padding-right: 10px;
-	display: none;
+.delay-field { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; }
+.delay-field label { flex: 1 1 270px; }
+#autoOpenPause { width: 88px; min-height: 36px; padding: 5px 8px; font-variant-numeric: tabular-nums; }
+.custom-css[hidden] { display: none; }
+#css {
+    display: block;
+    max-width: 100%;
+    min-height: 160px;
+    padding: 10px;
+    resize: vertical;
+    font: 12px/1.5 Consolas, "Courier New", monospace;
 }
-#folder_loading {
-	width: 20px; height: 20px; margin-top: 4px;
+.button-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.button-row input {
+    appearance: none;
+    border: 1px solid var(--settings-border);
+    border-radius: 7px;
+    padding: 7px 12px;
+    background: var(--settings-input);
+    color: var(--settings-text);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
 }
-#autoOpenPause {
-	width: 5em;
+.button-row input:last-child {
+    color: #fff;
+    border-color: #14777b;
+    background: #14777b;
 }
+.button-row input:hover { border-color: var(--settings-accent); }
+.button-row input:last-child:hover { background: #0d6064; }
+:where(select, textarea, input):focus-visible { outline: 2px solid var(--settings-focus); outline-offset: 2px; }
+.notes-card { margin-top: 12px; padding: 12px 18px; }
+h2 { margin: 0 0 7px; color: var(--settings-text); font-size: 15px; font-weight: 700; }
+.notes-card p { margin: 6px 0; color: var(--settings-muted); font-size: 13px; }
+@media (max-width: 500px) {
+    body { padding: 10px; }
+    .settings-card { padding: 2px 12px; }
+    .notes-card { padding: 11px 12px; }
+    .delay-field { display: block; }
+    .delay-field label { display: block; margin-bottom: 7px; }
+}
+
+/* 1.0.0: seasonal theme preference, readable in both color schemes. */
+.holiday-setting .check-field { border: 0; }
+.holiday-setting .field-hint { padding-left: 26px; }
+.holiday-setting .holiday-status { color: var(--settings-text); font-weight: 600; }
+
+/* RC4: explicit opt-in to enhanced favicon access. */
+.favicon-enhanced-controls {margin: 10px 0 0 26px;}
+.favicon-enhanced-controls[hidden] {display: none;}
+#faviconEnhancedBtn {
+    padding: 8px 12px;
+    border: 1px solid var(--settings-border);
+    border-radius: 8px;
+    background: var(--settings-input);
+    color: var(--settings-text);
+    font: 600 13px/1.3 system-ui, sans-serif;
+    cursor: pointer;
+}
+#faviconEnhancedBtn:hover {border-color: var(--settings-accent);}
+#faviconEnhancedBtn:focus-visible {outline: 2px solid var(--settings-focus); outline-offset: 2px;}
